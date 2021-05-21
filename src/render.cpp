@@ -61,6 +61,11 @@ void Render::initUI() {
 
 void Render::updateUI() {
   updateMapData();
+  for(int i=0; i<ROW; i++) {
+    for(int j=0; j<COL*2; j++) {
+      mvwprintw(snakeWindow, i, j, " ");
+    }
+  }
   for (int i = 0; i < ROW; i++) {
     for (int j = 0; j < COL; j++){
       char c = mapDataArray[i][j];
@@ -71,10 +76,10 @@ void Render::updateUI() {
         mvwprintw(snakeWindow, i, j*2, "\u0020");
       }
       else if (c == SNAKEHEAD) {
-        mvwprintw(snakeWindow, i, j*2, "\u25CF");
+        mvwprintw(snakeWindow, i, j*2, "ㅎ");
       }
       else if (c == SNAKEBODY) {
-        mvwprintw(snakeWindow, i, j*2, "\u25CB");
+        mvwprintw(snakeWindow, i, j*2, "ㅇ");
       }
     }
   }
