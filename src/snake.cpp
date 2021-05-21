@@ -33,7 +33,7 @@ void Snake::initUI() {
     mvprintw(i+6, 5, "%d. Stage %d" ,i+1, i+1);
 
   // choose stage
-  char stage = 1;
+  char stage = '1';
   while(true) {
     stage = getch();
     if(stage=='1' || stage=='2' || stage=='3' || stage=='4')

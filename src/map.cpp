@@ -1,13 +1,20 @@
 #include "map.h"
 
-Map::Map(int stage) {
-  mapFile += std::to_string(stage-48) + ".txt"; // "../map/map" + stage + ".txt"
-  std::ifstream readFile(mapFile);
+Map::Map(char stage) {
+  printf("%c", stage);
+  std::string mapFile = "../map/" + std::to_string(stage-48) + ".txt"; // "../map/map" + stage + ".txt"
+  std::ifstream fin(mapFile);
+  // try{
+  //   if(!fin) throw;
+  // }
+  // catch(...) {
+  //   std::cout << "file read failed." << std::endl;
+  // }
 
   int row = 0;
   int col = 0;
   int c;
-  while((c = readFile.get()) != EOF) {
+  while((c = fin.get()) != EOF) {
     if (c == '\n') {
       row += 1;
       col = 0;
@@ -20,7 +27,7 @@ Map::Map(int stage) {
     mapData[row][col] = (char)c;
     col += 1;
   }
-  readFile.close();
+  fin.close();
 }
 
 char Map::getMapData(int row, int col) {
