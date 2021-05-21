@@ -58,7 +58,7 @@ void Render::updateUI() {
         mvwprintw(snakeWindow, i, j*2, "\u0020");
       }
       else if (c == SNAKEHEAD) {
-        mvwprintw(snakeWindow, i, j*2, "\u25CB");
+        mvwprintw(snakeWindow, i, j*2, "\u25CF");
       }
       else if (c == SNAKEBODY) {
         mvwprintw(snakeWindow, i, j*2, "\u25CB");
