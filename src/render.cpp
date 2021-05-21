@@ -41,6 +41,7 @@ void Render::initUI() {
   init_pair(2, COLOR_WHITE, COLOR_BLACK);
   wbkgd(snakeWindow, COLOR_PAIR(2));
   wrefresh(snakeWindow);
+  updateMapData();
   updateUI();
   //delwin(snakeWindow);
   //endwin();
@@ -51,14 +52,17 @@ void Render::updateUI() {
   int col = 21;
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < col; j++){
-      char c = getMapData(i, j);
+      char c = mapDataArray[i][j];
       if (c == WALL || c == IMMUNEWALL) {
         mvwprintw(snakeWindow, i, j*2, "\u25A1");
       }
       else if (c == EMPTY) {
         mvwprintw(snakeWindow, i, j*2, "\u0020");
       }
-      else if (c == SNAKE) {
+      else if (c == SNAKEHEAD) {
+        mvwprintw(snakeWindow, i, j*2, "\u25CB");
+      }
+      else if (c == SNAKEBODY) {
         mvwprintw(snakeWindow, i, j*2, "\u25CB");
       }
     }
@@ -66,8 +70,21 @@ void Render::updateUI() {
   wrefresh(snakeWindow);
 }
 
-char Render::getMapData(int row, int col) {
-  return initMapDataArray[row][col];
+void Render::updateMapData() {
+  int row = 21;
+  int col = 21;
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++){
+      char c = initMapDataArray[i][j];
+      mapDataArray[i][j] = c;
+    }
+  }
+  mapDataArray[player.getSnakeHeadPos(0)][player.getSnakeHeadPos(1)] = SNAKEHEAD;
+  for (int i = 0; i < player.getBodyLength(); i++) {
+    int x = player.getSnakeBodyPos(i).first;
+    int y = player.getSnakeBodyPos(i).second;
+    mapDataArray[x][y] = SNAKEBODY;
+  }
 }
 
 //
