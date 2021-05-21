@@ -48,10 +48,8 @@ void Render::initUI() {
 }
 
 void Render::updateUI() {
-  int row = 21;
-  int col = 21;
-  for (int i = 0; i < row; i++) {
-    for (int j = 0; j < col; j++){
+  for (int i = 0; i < ROW; i++) {
+    for (int j = 0; j < COL; j++){
       char c = mapDataArray[i][j];
       if (c == WALL || c == IMMUNEWALL) {
         mvwprintw(snakeWindow, i, j*2, "\u25A1");
@@ -71,10 +69,8 @@ void Render::updateUI() {
 }
 
 void Render::updateMapData() {
-  int row = 21;
-  int col = 21;
-  for (int i = 0; i < row; i++) {
-    for (int j = 0; j < col; j++){
+  for (int i = 0; i < ROW; i++) {
+    for (int j = 0; j < COL; j++){
       char c = initMapDataArray[i][j];
       mapDataArray[i][j] = c;
     }

@@ -8,6 +8,8 @@
 #define EMPTY '0'
 #define SNAKEHEAD '3'
 #define SNAKEBODY '4'
+#define ROW 21
+#define COL 21
 
 class Render {
   char initMapDataArray[21][21];
