@@ -1,7 +1,6 @@
 #include "map.h"
 
 Map::Map(char stage) {
-  printf("%c", stage);
   std::string mapFile = "../map/" + std::to_string(stage-48) + ".txt"; // "../map/map" + stage + ".txt"
   std::ifstream fin(mapFile);
   // try{
