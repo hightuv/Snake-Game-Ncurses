@@ -1,8 +1,7 @@
 #include "Map.h"
 
-void Map::setStage(int stage = 1) {
-  stage = stage;
-  mapFile += stage + ".txt"; // "./map/map" + stage + ".txt"
+void Map::setStage(int stage) {
+  mapFile += std::to_string(stage-48) + ".txt"; // "../map/map" + stage + ".txt"
   std::ifstream readFile(mapFile);
 
   int row = 0;
