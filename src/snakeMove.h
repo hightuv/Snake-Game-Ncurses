@@ -1,4 +1,5 @@
 #include <deque>
+#include <ncurses.h>
 
 class SnakeMove {
   int snakeHead[2];
@@ -10,22 +11,22 @@ public:
     snakeBody.push_back(std::pair<int,int>(10,8));
   }
   void changePos (int keyPressed) {
-    if (keyPressed == 72) { // Up
+    if (keyPressed == KEY_UP) { // Up
       snakeBody.pop_back();
       snakeBody.push_front(std::pair<int,int>(snakeHead[0],snakeHead[1]));
       snakeHead[0] -= 1;
     }
-    else if (keyPressed == 80) { // Down
+    else if (keyPressed == KEY_DOWN) { // Down
       snakeBody.pop_back();
       snakeBody.push_front(std::pair<int,int>(snakeHead[0],snakeHead[1]));
       snakeHead[0] += 1;
     }
-    else if (keyPressed == 75) { // Left
+    else if (keyPressed == KEY_LEFT) { // Left
       snakeBody.pop_back();
       snakeBody.push_front(std::pair<int,int>(snakeHead[0],snakeHead[1]));
       snakeHead[1] -= 1;
     }
-    else if (keyPressed == 77) { // Right
+    else if (keyPressed == KEY_RIGHT) { // Right
       snakeBody.pop_back();
       snakeBody.push_front(std::pair<int,int>(snakeHead[0],snakeHead[1]));
       snakeHead[1] += 1;

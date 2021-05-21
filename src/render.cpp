@@ -40,14 +40,27 @@ void Render::initUI() {
   start_color();
   init_pair(2, COLOR_WHITE, COLOR_BLACK);
   wbkgd(snakeWindow, COLOR_PAIR(2));
-  wrefresh(snakeWindow);
-  updateMapData();
   updateUI();
+  wrefresh(snakeWindow);
+
+  // key input. default to right
+  int ch = KEY_RIGHT;
+  while(true) {
+    // 아무것도 입력되지 않으면 가던방향으로 감
+    halfdelay(3);
+    int in = getch();
+    if(in!=-1)
+      ch = in;
+    player.changePos(ch);
+    updateUI();
+  }
+
   //delwin(snakeWindow);
   //endwin();
 }
 
 void Render::updateUI() {
+  updateMapData();
   for (int i = 0; i < ROW; i++) {
     for (int j = 0; j < COL; j++){
       char c = mapDataArray[i][j];

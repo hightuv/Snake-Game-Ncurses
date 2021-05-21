@@ -15,7 +15,7 @@ void Snake::initUI() {
   start_color();
   // start menu font color, bg color
   init_pair(1, COLOR_RED, COLOR_WHITE);
-  // set bg color
+  // set bg colorbreak;
   bkgd(COLOR_PAIR(1));
   // no curse
   curs_set(0);
@@ -42,15 +42,6 @@ void Snake::initUI() {
 
   Render render(stage);
 
-  // render game window
-  while(true) {
-    break;
-    for(int row=0; row<ROW; row++) {
-      for(int col=0; col<COL; col++) {
-        // mvprintw
-      }
-    }
-  }
 
   // refresh window
   refresh();
