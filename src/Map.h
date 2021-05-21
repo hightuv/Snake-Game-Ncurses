@@ -3,7 +3,7 @@
 #include <string>
 
 class Map {
-  char mapData[30][30];
+  char mapData[21][21];
   int stage = 1;
   std::string mapFile = "./map/map/"
 public:
