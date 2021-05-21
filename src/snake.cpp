@@ -33,13 +33,14 @@ void Snake::initUI() {
     mvprintw(i+6, 5, "%d. Stage %d" ,i+1, i+1);
 
   // choose stage
+  char stage = 1;
   while(true) {
-    char stage = getch();
+    stage = getch();
     if(stage=='1' || stage=='2' || stage=='3' || stage=='4')
      break;
   }
-  //Render render(stage);
 
+  Render render(stage);
 
   // render game window
   while(true) {

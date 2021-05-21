@@ -3,6 +3,7 @@
 // unicode
 #include <clocale>
 #include <iostream>
+#include "render.h"
 
 class Snake{
 public:

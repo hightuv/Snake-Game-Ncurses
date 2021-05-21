@@ -1,4 +1,4 @@
-#include "Map.h"
+#include "map.h"
 #include <ncurses.h>
 
 #define WALL '1';
@@ -10,7 +10,7 @@ class Render {
   WINDOW *newWindow;
   Map map;
 public:
-  Render();
+  Render(int stage=1);
   void updateScreen();
   void endWindow();
 };
