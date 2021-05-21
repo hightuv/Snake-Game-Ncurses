@@ -1,7 +1,7 @@
 #include "Map.h"
 
 Map::Map(){
-  mapFile = "./map/map1.txt" // "./map/map" + stage + ".txt"
+  mapFile = "./map/map1.txt"; // "./map/map" + stage + ".txt"
   std::ifstream readFile(mapFile);
 
   int row = 0;
@@ -23,5 +23,5 @@ Map::Map(){
   readFile.close();
 }
 char Map::getMapData(int row, int col) {
-  return mapDataArray[i][j];
+  return mapData[row][col];
 }
