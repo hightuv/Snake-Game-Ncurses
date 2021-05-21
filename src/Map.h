@@ -4,8 +4,9 @@
 
 class Map {
   char mapData[30][30];
-  std::string mapFile;
+  int stage = 1;
+  std::string mapFile = "./map/map/"
 public:
-  Map();
+  void setStage(int stage);
   char getMapData(int row, int col);
 };
