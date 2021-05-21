@@ -7,4 +7,4 @@ class Map {
 public:
   Map();
   char getMapData(int row, int col);
-}
+};
