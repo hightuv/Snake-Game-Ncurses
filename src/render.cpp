@@ -36,7 +36,7 @@ void Render::setMap(int stage) {
 }
 
 void Render::initUI() {
-  snakeWindow = newwin(21, 42, 5, 5);
+  snakeWindow = newwin(21, 42, 5, 10);
   start_color();
   init_pair(2, COLOR_WHITE, COLOR_BLACK);
   wbkgd(snakeWindow, COLOR_PAIR(2));

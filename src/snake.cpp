@@ -28,9 +28,9 @@ void Snake::initUI() {
 
 
   // text
-  mvprintw(5, 5, "Snake Game!");
+  mvprintw(5, 10, "Snake Game!");
   for(int i=0; i<4; i++)
-    mvprintw(i+6, 5, "%d. Stage %d" ,i+1, i+1);
+    mvprintw(i+6, 10, "%d. Stage %d" ,i+1, i+1);
 
   // choose stage
   char stage = '1';
