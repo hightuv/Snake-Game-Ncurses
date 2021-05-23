@@ -3,7 +3,9 @@
 #include <fstream>
 #include <iostream>
 #include "snakeMove.h"
+// random
 #include <cstdlib>
+// time
 #include <ctime>
 #define WALL '1'
 #define IMMUNEWALL '2'
