@@ -68,18 +68,23 @@ void Render::initUI() {
     int head_col = player.getSnakeHeadPos(1);
     if(mapDataArray[head_row][head_col]==WALL || mapDataArray[head_row][head_col]==SNAKEBODY)
       break;
-    else if (mapDataArray[head_row][head_col] == GROWTHITEM) {
-      player.snakeHitGrowthItem(growthItem);
+
+    // hit items
+    if (mapDataArray[head_row][head_col] == GROWTHITEM) {
+      player.snakeHitGrowthItem();
       growth_hit = 1;
     }
-    else if (mapDataArray[head_row][head_col] == POISONITEM) {
-      player.snakeHitPoisonItem(poisonItem);
+    if (mapDataArray[head_row][head_col] == POISONITEM) {
+      // body size less than 2
+      if(!player.snakeHitPoisonItem())
+        break;
       poison_hit = 1;
     }
+
     end = time(NULL);
     duration = (int)(end - start);
     updateUI(duration);
-    usleep(500000);
+    usleep(300000);
   }
 
   //delwin(snakeWindow);
