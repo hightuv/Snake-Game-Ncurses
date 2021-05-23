@@ -112,6 +112,9 @@ void Render::updateUI(int time) {
       else if (c == POISONITEM) {
         mvwprintw(snakeWindow, i, j*2, "ㄴ");
       }
+      else if(c == GATE) {
+        mvwprintw(snakeWindow, i, j*2, "ㅁ");
+      }
     }
   }
   wrefresh(snakeWindow);
@@ -133,9 +136,13 @@ void Render::updateMapData(int time) {
   if (time % 9 == 0) {
     spawnPoisonItem();
     spawnGrowthItem();
+    spawnGate();
   }
+  // items
   mapDataArray[poisonItem.first][poisonItem.second] = POISONITEM;
   mapDataArray[growthItem.first][growthItem.second] = GROWTHITEM;
+  mapDataArray[gate[0].first][gate[0].second] = GATE;
+  mapDataArray[gate[1].first][gate[1].second] = GATE;
 
 }
 
@@ -163,6 +170,24 @@ void Render::spawnPoisonItem() {
   }
   poisonItem.first = poison_x;
   poisonItem.second = poison_y;
+}
+
+void Render::spawnGate() {
+  //time_t t = time(NULL);
+  srand(time(NULL));
+  while(true) {
+    int row1 = rand() % 21;
+    int col1 = rand() % 21;
+    int row2 = rand() % 21;
+    int col2 = rand() % 21;
+    if(mapDataArray[row1][col1] == WALL && mapDataArray[row2][col2] == WALL) {
+      gate[0].first = row1;
+      gate[0].second = col1;
+      gate[1].first = row2;
+      gate[1].second = col2;
+      break;
+    }
+  }
 }
 
 bool Render::keyInput() {
