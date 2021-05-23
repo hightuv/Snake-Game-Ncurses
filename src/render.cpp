@@ -42,6 +42,9 @@ void Render::initUI() {
   wbkgd(snakeWindow, COLOR_PAIR(2));
   updateUI();
   wrefresh(snakeWindow);
+  time_t start = time(NULL);
+  time_t end;
+  int duration;
 
   // key input. default to right
   int ch = KEY_RIGHT;
@@ -65,8 +68,9 @@ void Render::initUI() {
     int head_col = player.getSnakeHeadPos(1);
     if(mapDataArray[head_row][head_col]==WALL || mapDataArray[head_row][head_col]==SNAKEBODY)
       break;
-
-    updateUI();
+    end = time(NULL);
+    duration = (int)(end - start);
+    updateUI(duration);
     usleep(500000);
   }
 
@@ -74,8 +78,8 @@ void Render::initUI() {
   //endwin();
 }
 
-void Render::updateUI() {
-  updateMapData();
+void Render::updateUI(int time) {
+  updateMapData(time);
   for(int i=0; i<ROW; i++) {
     for(int j=0; j<COL*2; j++) {
       mvwprintw(snakeWindow, i, j, " ");
@@ -96,12 +100,18 @@ void Render::updateUI() {
       else if (c == SNAKEBODY) {
         mvwprintw(snakeWindow, i, j*2, "ㅇ");
       }
+      else if (c == GROWTHITEM) {
+        mvwprintw(snakeWindow, i, j*2, "ㅗ");
+      }
+      else if (c == POISONITEM){
+        mvwprintw(snakeWindow, i, j*2, "ㅇ");
+      }
     }
   }
   wrefresh(snakeWindow);
 }
 
-void Render::updateMapData() {
+void Render::updateMapData(int time) {
   for (int i = 0; i < ROW; i++) {
     for (int j = 0; j < COL; j++){
       char c = initMapDataArray[i][j];
@@ -114,29 +124,38 @@ void Render::updateMapData() {
     int y = player.getSnakeBodyPos(i).second;
     mapDataArray[x][y] = SNAKEBODY;
   }
+  if (time % 5 == 0) {
+    spawnPoisonItem();
+    spawnGrowthItem();
+  }
+  mapDataArray[growthItem.first][growthItem.second] = GROWTHITEM;
+  mapDataArray[poisonItem.first][poisonItem.second] = POISONITEM;
 }
+
 void Render::spawnGrowthItem() {
-  time_t t = time(NULL);
-  srand(t);
+  //time_t t = time(NULL);
+  srand(time(NULL));
 	int growth_x = rand() % 19 + 1;
 	int growth_y = rand() % 19 + 1;
   while (mapDataArray[growth_x][growth_y] != EMPTY) {
     growth_x = rand() % 19 + 1;
   	growth_y = rand() % 19 + 1;
   }
-  mapDataArray[growth_x][growth_y] = GROWTHITEM;
+  growthItem.first = growth_x;
+  growthItem.second = growth_y;
 }
 
 void Render::spawnPoisonItem() {
-  time_t t = time(NULL);
-  srand(t);
+  //time_t t = time(NULL);
+  srand(time(NULL));
   int poison_x = rand() % 19 + 1;
 	int poison_y = rand() % 19 + 1;
   while (mapDataArray[poison_x][poison_y] != EMPTY) {
     poison_x = rand() % 19 + 1;
   	poison_y = rand() % 19 + 1;
   }
-  mapDataArray[poison_x][poison_y] = GROWTHITEM;
+  poisonItem.first = poison_x;
+  poisonItem.second = poison_y;
 }
 
 bool Render::keyInput() {
