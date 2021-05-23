@@ -137,11 +137,6 @@ void Render::updateMapData(int time) {
   // items
   mapDataArray[poisonItem.first][poisonItem.second] = POISONITEM;
   mapDataArray[growthItem.first][growthItem.second] = GROWTHITEM;
-<<<<<<< HEAD
-  mapDataArray[gate[0].first][gate[0].second] = GATE;
-  mapDataArray[gate[1].first][gate[1].second] = GATE;
-
-=======
   if (poison_hit == 1) {
     mapDataArray[poisonItem.first][poisonItem.second] = EMPTY;
   }
@@ -154,7 +149,6 @@ void Render::updateMapData(int time) {
     int y = player.getSnakeBodyPos(i).second;
     mapDataArray[x][y] = SNAKEBODY;
   }
->>>>>>> af4e8562162b6795a25f33c9b8954a5870872534
 }
 
 void Render::spawnGrowthItem() {
