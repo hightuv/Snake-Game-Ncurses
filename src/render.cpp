@@ -54,8 +54,8 @@ void Render::initUI() {
       break;
     if(in!=-1)
       ch = in;
-    bool wallHit = player.changePos(ch);
-    if(wallHit)
+    player.changePos(ch);
+    if(mapDataArray[player.getSnakeHeadPos(0)][player.getSnakeHeadPos(1)]==WALL)
       break;
     updateUI();
   }
