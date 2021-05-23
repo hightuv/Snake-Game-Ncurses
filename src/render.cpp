@@ -101,10 +101,10 @@ void Render::updateUI(int time) {
         mvwprintw(snakeWindow, i, j*2, "ㅇ");
       }
       else if (c == GROWTHITEM) {
-        mvwprintw(snakeWindow, i, j*2, "ㅗ");
+        mvwprintw(snakeWindow, i, j*2, "ㄱ");
       }
       else if (c == POISONITEM) {
-        mvwprintw(snakeWindow, i, j*2, "ㅇ");
+        mvwprintw(snakeWindow, i, j*2, "ㄴ");
       }
     }
   }
