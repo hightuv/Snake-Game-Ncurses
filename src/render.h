@@ -24,8 +24,8 @@
 class Render {
   char initMapDataArray[21][21];
   char mapDataArray[21][21];
-  std::pair<int,int> growthItem = std::make_pair(3,3);
-  std::pair<int,int> poisonItem = std::make_pair(15, 15);
+  std::pair<int,int> growthItem;
+  std::pair<int,int> poisonItem;
   SnakeMove player;
   WINDOW *snakeWindow;
 public:
