@@ -106,7 +106,22 @@ void Render::updateMapData() {
     mapDataArray[x][y] = SNAKEBODY;
   }
 }
+void spawnGrowthItem() {
+  time_t t = time(NULL);
+  srand(t);
+	int growth_x = rand() % 20;
+	int growth_y = rand() % 20;
+  mapDataArray[growth_x][growth_y] = GROWTHITEM;
 
+}
+
+void spawnPoisonItem() {
+  time_t t = time(NULL);
+  srand(t);
+  int poison_x = rand() % 20;
+  int poison_y = rand() % 20;
+  mapDataArray[poison_x][poison_y] = POISONITEM;
+}
 //
 // void Render::endWindow() {
 //   delwin(snakeWindow);

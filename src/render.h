@@ -3,13 +3,15 @@
 #include <fstream>
 #include <iostream>
 #include "snakeMove.h"
-// time sleep
-#include <unistd.h>
+#include <cstdlib>
+#include <ctime>
 #define WALL '1'
 #define IMMUNEWALL '2'
 #define EMPTY '0'
 #define SNAKEHEAD '3'
 #define SNAKEBODY '4'
+#define GROWTHITEM '5'
+#define POISONITEM '6'
 #define ROW 21
 #define COL 21
 
