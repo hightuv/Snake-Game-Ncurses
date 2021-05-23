@@ -68,6 +68,12 @@ void Render::initUI() {
     int head_col = player.getSnakeHeadPos(1);
     if(mapDataArray[head_row][head_col]==WALL || mapDataArray[head_row][head_col]==SNAKEBODY)
       break;
+    else if (mapDataArray[head_row][head_col] == GROWTHITEM) {
+      player.snakeHitGrowthItem(growthItem);
+    }
+    else if (mapDataArray[head_row][head_col] == POISONITEM) {
+      player.snakeHitPoisonItem(poisonItem);
+    }
     end = time(NULL);
     duration = (int)(end - start);
     updateUI(duration);
@@ -124,7 +130,7 @@ void Render::updateMapData(int time) {
     int y = player.getSnakeBodyPos(i).second;
     mapDataArray[x][y] = SNAKEBODY;
   }
-  if (time % 5 == 0) {
+  if (time % 9 == 0) {
     spawnPoisonItem();
     spawnGrowthItem();
   }
