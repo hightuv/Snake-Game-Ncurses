@@ -3,15 +3,17 @@
 #include <fstream>
 #include <iostream>
 #include "snakeMove.h"
+// pair
+#include <utility>
 // random
 #include <cstdlib>
 // time
 #include <ctime>
 // time sleep
 #include <unistd.h>
+#define EMPTY '0'
 #define WALL '1'
 #define IMMUNEWALL '2'
-#define EMPTY '0'
 #define SNAKEHEAD '3'
 #define SNAKEBODY '4'
 #define GROWTHITEM '5'
@@ -22,16 +24,18 @@
 class Render {
   char initMapDataArray[21][21];
   char mapDataArray[21][21];
+  std::pair<int,int> growthItem = std::make_pair(3,3);
+  std::pair<int,int> poisonItem = std::make_pair(15, 15);
   SnakeMove player;
   WINDOW *snakeWindow;
 public:
   Render(char stage='1');
   void initUI();
-  void updateUI();
+  void updateUI(int time = 0);
   void endWindow();
   void setMap(int stage);
   char getMapData(int row, int col);
-  void updateMapData();
+  void updateMapData(int time);
   void spawnGrowthItem();
   void spawnPoisonItem();
   bool keyInput();
