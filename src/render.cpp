@@ -56,7 +56,10 @@ void Render::initUI() {
     if(in==KEY_LEFT || in==KEY_RIGHT || in==KEY_UP || in==KEY_DOWN)
       ch = in;
     player.changePos(ch);
-    if(mapDataArray[player.getSnakeHeadPos(0)][player.getSnakeHeadPos(1)]==WALL)
+    // hit wall
+    int head_row = player.getSnakeHeadPos(0);
+    int head_col = player.getSnakeHeadPos(1);
+    if(mapDataArray[head_row][head_col]==WALL || mapDataArray[head_row][head_col]==SNAKEBODY)
       break;
     updateUI();
   }
@@ -106,7 +109,7 @@ void Render::updateMapData() {
     mapDataArray[x][y] = SNAKEBODY;
   }
 }
-void spawnGrowthItem() {
+void Render::spawnGrowthItem() {
   time_t t = time(NULL);
   srand(t);
 	int growth_x = rand() % 20;
@@ -115,7 +118,7 @@ void spawnGrowthItem() {
 
 }
 
-void spawnPoisonItem() {
+void Render::spawnPoisonItem() {
   time_t t = time(NULL);
   srand(t);
   int poison_x = rand() % 20;

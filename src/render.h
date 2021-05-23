@@ -30,4 +30,6 @@ public:
   void setMap(int stage);
   char getMapData(int row, int col);
   void updateMapData();
+  void spawnGrowthItem();
+  void spawnPoisonItem();
 };
