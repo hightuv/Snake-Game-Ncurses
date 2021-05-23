@@ -149,7 +149,7 @@ void Render::updateMapData(int time) {
   if (poison_hit == 1) {
     mapDataArray[poisonItem.first][poisonItem.second] = EMPTY;
   }
-  else if (growth_hit == 1) {
+  if (growth_hit == 1) {
     mapDataArray[growthItem.first][growthItem.second] = EMPTY;
   }
   mapDataArray[player.getSnakeHeadPos(0)][player.getSnakeHeadPos(1)] = SNAKEHEAD;
