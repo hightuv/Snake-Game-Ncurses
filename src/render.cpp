@@ -46,9 +46,13 @@ void Render::initUI() {
   // key input. default to right
   int ch = KEY_RIGHT;
   while(true) {
-    // 아무것도 입력되지 않으면 가던방향으로 감
-    halfdelay(3);
-    int in = getch();
+    int in = ch;
+    // key input
+    if(keyInput()) {
+      in = getch();
+      if(in==ch)
+        continue;
+    }
     // opposit side input
     if((ch==KEY_RIGHT&&in==KEY_LEFT) || (ch==KEY_LEFT&&in==KEY_RIGHT) || (ch==KEY_UP&&in==KEY_DOWN) || (ch==KEY_DOWN&&in==KEY_UP))
       break;
@@ -61,7 +65,9 @@ void Render::initUI() {
     int head_col = player.getSnakeHeadPos(1);
     if(mapDataArray[head_row][head_col]==WALL || mapDataArray[head_row][head_col]==SNAKEBODY)
       break;
+
     updateUI();
+    usleep(500000);
   }
 
   //delwin(snakeWindow);
@@ -124,6 +130,24 @@ void Render::spawnPoisonItem() {
   int poison_x = rand() % 20;
   int poison_y = rand() % 20;
   mapDataArray[poison_x][poison_y] = POISONITEM;
+}
+
+bool Render::keyInput() {
+  int ch;
+  bool ret;
+
+  nodelay(stdscr, TRUE);
+
+  ch = getch();
+  if(ch==ERR)
+    ret = false;
+  else {
+    ret = true;
+    ungetch(ch);
+  }
+
+  nodelay(stdscr, FALSE);
+  return ret;
 }
 //
 // void Render::endWindow() {

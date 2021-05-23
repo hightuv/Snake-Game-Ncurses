@@ -7,6 +7,8 @@
 #include <cstdlib>
 // time
 #include <ctime>
+// time sleep
+#include <unistd.h>
 #define WALL '1'
 #define IMMUNEWALL '2'
 #define EMPTY '0'
@@ -32,4 +34,5 @@ public:
   void updateMapData();
   void spawnGrowthItem();
   void spawnPoisonItem();
+  bool keyInput();
 };
