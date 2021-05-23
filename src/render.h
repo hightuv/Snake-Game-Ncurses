@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iostream>
 #include "snakeMove.h"
+// time sleep
+#include <unistd.h>
 #define WALL '1'
 #define IMMUNEWALL '2'
 #define EMPTY '0'

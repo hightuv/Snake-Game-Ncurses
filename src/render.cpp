@@ -52,7 +52,8 @@ void Render::initUI() {
     // opposit side input
     if((ch==KEY_RIGHT&&in==KEY_LEFT) || (ch==KEY_LEFT&&in==KEY_RIGHT) || (ch==KEY_UP&&in==KEY_DOWN) || (ch==KEY_DOWN&&in==KEY_UP))
       break;
-    if(in!=-1)
+    // direction set
+    if(in==KEY_LEFT || in==KEY_RIGHT || in==KEY_UP || in==KEY_DOWN)
       ch = in;
     player.changePos(ch);
     if(mapDataArray[player.getSnakeHeadPos(0)][player.getSnakeHeadPos(1)]==WALL)
