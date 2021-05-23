@@ -137,6 +137,10 @@ void Render::updateMapData(int time) {
   // items
   mapDataArray[poisonItem.first][poisonItem.second] = POISONITEM;
   mapDataArray[growthItem.first][growthItem.second] = GROWTHITEM;
+  // gate
+  mapDataArray[gate[0].first][gate[0].second] = GATE;
+  mapDataArray[gate[1].first][gate[1].second] = GATE;
+
   if (poison_hit == 1) {
     mapDataArray[poisonItem.first][poisonItem.second] = EMPTY;
   }
