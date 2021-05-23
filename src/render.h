@@ -28,6 +28,7 @@ class Render {
   std::pair<int,int> poisonItem;
   SnakeMove player;
   WINDOW *snakeWindow;
+  char dir;
 public:
   Render(char stage='1');
   void initUI();

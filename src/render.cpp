@@ -47,22 +47,22 @@ void Render::initUI() {
   int duration;
 
   // key input. default to right
-  int ch = KEY_RIGHT;
+  dir = KEY_RIGHT;
   while(true) {
-    int in = ch;
+    int in = dir;
     // key input
     if(keyInput()) {
       in = getch();
-      if(in==ch)
+      if(in==dir)
         continue;
     }
     // opposit side input
-    if((ch==KEY_RIGHT&&in==KEY_LEFT) || (ch==KEY_LEFT&&in==KEY_RIGHT) || (ch==KEY_UP&&in==KEY_DOWN) || (ch==KEY_DOWN&&in==KEY_UP))
+    if((dir==KEY_RIGHT&&in==KEY_LEFT) || (dir==KEY_LEFT&&in==KEY_RIGHT) || (dir==KEY_UP&&in==KEY_DOWN) || (dir==KEY_DOWN&&in==KEY_UP))
       break;
     // direction set
     if(in==KEY_LEFT || in==KEY_RIGHT || in==KEY_UP || in==KEY_DOWN)
-      ch = in;
-    player.changePos(ch);
+      dir = in;
+    player.changePos(dir);
     // hit wall
     int head_row = player.getSnakeHeadPos(0);
     int head_col = player.getSnakeHeadPos(1);
