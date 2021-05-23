@@ -112,18 +112,25 @@ void Render::updateMapData() {
 void Render::spawnGrowthItem() {
   time_t t = time(NULL);
   srand(t);
-	int growth_x = rand() % 20;
-	int growth_y = rand() % 20;
+	int growth_x = rand() % 19 + 1;
+	int growth_y = rand() % 19 + 1;
+  while (mapDataArray[growth_x][growth_y] != EMPTY) {
+    growth_x = rand() % 19 + 1;
+  	growth_y = rand() % 19 + 1;
+  }
   mapDataArray[growth_x][growth_y] = GROWTHITEM;
-
 }
 
 void Render::spawnPoisonItem() {
   time_t t = time(NULL);
   srand(t);
-  int poison_x = rand() % 20;
-  int poison_y = rand() % 20;
-  mapDataArray[poison_x][poison_y] = POISONITEM;
+  int poison_x = rand() % 19 + 1;
+	int poison_y = rand() % 19 + 1;
+  while (mapDataArray[poison_x][poison_y] != EMPTY) {
+    poison_x = rand() % 19 + 1;
+  	poison_y = rand() % 19 + 1;
+  }
+  mapDataArray[poison_x][poison_y] = GROWTHITEM;
 }
 //
 // void Render::endWindow() {
