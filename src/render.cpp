@@ -70,9 +70,11 @@ void Render::initUI() {
       break;
     else if (mapDataArray[head_row][head_col] == GROWTHITEM) {
       player.snakeHitGrowthItem(growthItem);
+      growth_hit = 1;
     }
     else if (mapDataArray[head_row][head_col] == POISONITEM) {
       player.snakeHitPoisonItem(poisonItem);
+      poison_hit = 1;
     }
     end = time(NULL);
     duration = (int)(end - start);
@@ -124,22 +126,28 @@ void Render::updateMapData(int time) {
       mapDataArray[i][j] = c;
     }
   }
-  mapDataArray[player.getSnakeHeadPos(0)][player.getSnakeHeadPos(1)] = SNAKEHEAD;
-  for (int i = 0; i < player.getBodyLength(); i++) {
-    int x = player.getSnakeBodyPos(i).first;
-    int y = player.getSnakeBodyPos(i).second;
-    mapDataArray[x][y] = SNAKEBODY;
-  }
   if (time % 9 == 0) {
     spawnPoisonItem();
     spawnGrowthItem();
   }
   mapDataArray[poisonItem.first][poisonItem.second] = POISONITEM;
   mapDataArray[growthItem.first][growthItem.second] = GROWTHITEM;
-
+  if (poison_hit == 1) {
+    mapDataArray[poisonItem.first][poisonItem.second] = EMPTY;
+  }
+  else if (growth_hit == 1) {
+    mapDataArray[growthItem.first][growthItem.second] = EMPTY;
+  }
+  mapDataArray[player.getSnakeHeadPos(0)][player.getSnakeHeadPos(1)] = SNAKEHEAD;
+  for (int i = 0; i < player.getBodyLength(); i++) {
+    int x = player.getSnakeBodyPos(i).first;
+    int y = player.getSnakeBodyPos(i).second;
+    mapDataArray[x][y] = SNAKEBODY;
+  }
 }
 
 void Render::spawnGrowthItem() {
+  growth_hit = 0;
   //time_t t = time(NULL);
   srand(time(NULL));
 	int growth_x = rand() % 19 + 1;
@@ -153,6 +161,7 @@ void Render::spawnGrowthItem() {
 }
 
 void Render::spawnPoisonItem() {
+  poison_hit = 0;
   //time_t t = time(NULL);
   srand(time(NULL) + 1);
   int poison_x = rand() % 19 + 1;

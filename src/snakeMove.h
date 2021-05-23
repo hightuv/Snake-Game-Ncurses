@@ -40,7 +40,6 @@ public:
   }
   void snakeHitGrowthItem(std::pair<int,int> growthItem) {
     snakeBody.push_front(std::pair<int,int>(snakeHead[0],snakeHead[1]));
-    snakeHead[0] = growthItem.first; snakeHead[1] = growthItem.second;
   }
   void snakeHitPoisonItem(std::pair<int,int> poisonItem) {
     snakeBody.pop_back();
