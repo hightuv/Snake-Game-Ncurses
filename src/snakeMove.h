@@ -10,7 +10,7 @@ public:
     snakeBody.push_back(std::pair<int,int>(10,9));
     snakeBody.push_back(std::pair<int,int>(10,8));
   }
-  void changePos (int keyPressed) {
+  bool changePos (int keyPressed) {
     if (keyPressed == KEY_UP) { // Up
       snakeBody.pop_back();
       snakeBody.push_front(std::pair<int,int>(snakeHead[0],snakeHead[1]));
@@ -31,6 +31,10 @@ public:
       snakeBody.push_front(std::pair<int,int>(snakeHead[0],snakeHead[1]));
       snakeHead[1] += 1;
     }
+
+    if(snakeHead[0]==0 || snakeHead[1]==0 || snakeHead[0]==20 || snakeHead[1]==20)
+      return true;
+    return false;
   }
   int getSnakeHeadPos(int i) {
     return snakeHead[i];

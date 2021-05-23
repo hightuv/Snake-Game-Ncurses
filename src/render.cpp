@@ -49,11 +49,14 @@ void Render::initUI() {
     // 아무것도 입력되지 않으면 가던방향으로 감
     halfdelay(3);
     int in = getch();
+    // opposit side input
     if((ch==KEY_RIGHT&&in==KEY_LEFT) || (ch==KEY_LEFT&&in==KEY_RIGHT) || (ch==KEY_UP&&in==KEY_DOWN) || (ch==KEY_DOWN&&in==KEY_UP))
       break;
     if(in!=-1)
       ch = in;
-    player.changePos(ch);
+    bool wallHit = player.changePos(ch);
+    if(wallHit)
+      break;
     updateUI();
   }
 
@@ -78,10 +81,10 @@ void Render::updateUI() {
         mvwprintw(snakeWindow, i, j*2, "\u0020");
       }
       else if (c == SNAKEHEAD) {
-        mvwprintw(snakeWindow, i, j*2, "\u25CF");
+        mvwprintw(snakeWindow, i, j*2, "ㅎ");
       }
       else if (c == SNAKEBODY) {
-        mvwprintw(snakeWindow, i, j*2, "\u25CB");
+        mvwprintw(snakeWindow, i, j*2, "ㅇ");
       }
     }
   }
