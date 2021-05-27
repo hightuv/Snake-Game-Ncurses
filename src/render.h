@@ -33,6 +33,7 @@ class Render {
   int dir = KEY_RIGHT;
   bool poison_hit = 0;
   bool growth_hit = 0;
+  bool gate_hit = 0;
 public:
   Render(char stage='1');
   void initUI();
@@ -44,6 +45,6 @@ public:
   void spawnGrowthItem();
   void spawnPoisonItem();
   void spawnGate();
-  void snakeMeetGate();
+  void changeDirAfterPassingGate();
   bool keyInput();
 };

@@ -1,5 +1,6 @@
 #include <deque>
 #include <ncurses.h>
+#include <algorithm>
 
 class SnakeMove {
   int snakeHead[2];
@@ -10,6 +11,10 @@ public:
     snakeHead[0] = 10, snakeHead[1] = 10;
     snakeBody.push_back(std::pair<int,int>(10,9));
     snakeBody.push_back(std::pair<int,int>(10,8));
+  }
+  SnakeMove(const SnakeMove& copy) {
+    snakeHead[0] = copy.snakeHead[0]; snakeHead[1] = copy.snakeHead[1];
+    std::copy(copy.snakeBody.begin(), copy.snakeBody.end(), snakeBody.begin());
   }
   void changePos (int keyPressed) {
     if (keyPressed == KEY_UP) { // Up
@@ -51,6 +56,9 @@ public:
     if(snakeBody.size()<2)
       return false;
     return true;
+  }
+  void snakeHitGate(int otherGate_x, int otherGate_y) {
+    snakeHead[0] = otherGate_x; snakeHead[1] = otherGate_y;
   }
   int getBodyLength() {
     return snakeBody.size();

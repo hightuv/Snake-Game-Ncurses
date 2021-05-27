@@ -79,6 +79,17 @@ void Render::initUI() {
         break;
       poison_hit = 1;
     }
+    // hit Gate
+    if (mapDataArray[head_row][head_col] == GATE) {
+      if (gate[0].first == head_row && gate[0].second == head_col) {
+        player.snakeHitGate(gate[1].first, gate[1].second);
+      }
+      else if (gate[1].first == head_row && gate[1].second == head_col) {
+        player.snakeHitGate(gate[0].first, gate[0].second);
+      }
+      changeDirAfterPassingGate();
+      gate_hit = 1;
+    }
 
     end = time(NULL);
     duration = (int)(end - start);
@@ -208,11 +219,8 @@ void Render::spawnGate() {
   }
 }
 
-void Render::snakeMeetGate() {
-  if (dir == KEY_RIGHT) {
-
-  }
-
+void Render::changeDirAfterPassingGate() {
+  
 }
 
 bool Render::keyInput() {
