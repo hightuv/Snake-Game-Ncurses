@@ -1,6 +1,6 @@
 #include "snake.h"
-#define COL 21
-#define ROW 21
+#define COL 23
+#define ROW 23
 
 Snake::Snake() {
   initUI();

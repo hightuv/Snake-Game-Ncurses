@@ -19,12 +19,12 @@
 #define GROWTHITEM '5'
 #define POISONITEM '6'
 #define GATE '7'
-#define ROW 21
-#define COL 21
+#define ROW 23
+#define COL 23
 
 class Render {
-  char initMapDataArray[21][21];
-  char mapDataArray[21][21];
+  char initMapDataArray[ROW][COL];
+  char mapDataArray[ROW][COL];
   std::pair<int,int> growthItem;
   std::pair<int,int> poisonItem;
   std::pair<int,int> gate[2];

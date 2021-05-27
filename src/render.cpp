@@ -36,7 +36,7 @@ void Render::setMap(int stage) {
 }
 
 void Render::initUI() {
-  snakeWindow = newwin(21, 42, 5, 10);
+  snakeWindow = newwin(23, 46, 5, 10);
   start_color();
   init_pair(2, COLOR_WHITE, COLOR_BLACK);
   wbkgd(snakeWindow, COLOR_PAIR(2));
@@ -100,8 +100,11 @@ void Render::updateUI(int time) {
   for (int i = 0; i < ROW; i++) {
     for (int j = 0; j < COL; j++){
       char c = mapDataArray[i][j];
-      if (c == WALL || c == IMMUNEWALL) {
+      if (c == WALL) {
         mvwprintw(snakeWindow, i, j*2, "\u25A1");
+      }
+      else if (c == IMMUNEWALL) {
+        mvwprintw(snakeWindow, i, j*2, "\u0020");
       }
       else if (c == EMPTY) {
         mvwprintw(snakeWindow, i, j*2, "\u0020");
@@ -163,11 +166,11 @@ void Render::spawnGrowthItem() {
   growth_hit = 0;
   //time_t t = time(NULL);
   srand(time(NULL));
-	int growth_x = rand() % 19 + 1;
-	int growth_y = rand() % 19 + 1;
+	int growth_x = rand() % 21 + 1;
+	int growth_y = rand() % 21 + 1;
   while (mapDataArray[growth_x][growth_y] != EMPTY) {
-    growth_x = rand() % 19 + 1;
-  	growth_y = rand() % 19 + 1;
+    growth_x = rand() % 21 + 1;
+  	growth_y = rand() % 21 + 1;
   }
   growthItem.first = growth_x;
   growthItem.second = growth_y;
@@ -177,11 +180,11 @@ void Render::spawnPoisonItem() {
   poison_hit = 0;
   //time_t t = time(NULL);
   srand(time(NULL) + 1);
-  int poison_x = rand() % 19 + 1;
-	int poison_y = rand() % 19 + 1;
+  int poison_x = rand() % 21 + 1;
+	int poison_y = rand() % 21 + 1;
   while (mapDataArray[poison_x][poison_y] != EMPTY) {
-    poison_x = rand() % 19 + 1;
-  	poison_y = rand() % 19 + 1;
+    poison_x = rand() % 21 + 1;
+  	poison_y = rand() % 21 + 1;
   }
   poisonItem.first = poison_x;
   poisonItem.second = poison_y;
@@ -191,10 +194,10 @@ void Render::spawnGate() {
   //time_t t = time(NULL);
   srand(time(NULL));
   while(true) {
-    int row1 = rand() % 21;
-    int col1 = rand() % 21;
-    int row2 = rand() % 21;
-    int col2 = rand() % 21;
+    int row1 = rand() % 23;
+    int col1 = rand() % 23;
+    int row2 = rand() % 23;
+    int col2 = rand() % 23;
     if(mapDataArray[row1][col1] == WALL && mapDataArray[row2][col2] == WALL) {
       gate[0].first = row1;
       gate[0].second = col1;
@@ -206,7 +209,10 @@ void Render::spawnGate() {
 }
 
 void Render::snakeMeetGate() {
-  
+  if (dir == KEY_RIGHT) {
+
+  }
+
 }
 
 bool Render::keyInput() {
