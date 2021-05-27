@@ -88,7 +88,6 @@ void Render::initUI() {
         player.snakeHitGate(gate[0].first, gate[0].second);
       }
       changeDirAfterPassingGate();
-      gate_hit = 1;
     }
 
     end = time(NULL);
@@ -220,7 +219,42 @@ void Render::spawnGate() {
 }
 
 void Render::changeDirAfterPassingGate() {
-  
+  getPlayerFutureMove(dir);
+  while (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+    if (dir == KEY_LEFT) {
+      dir = KEY_UP;
+    }
+    else if (dir == KEY_RIGHT) {
+      dir = KEY_DOWN;
+    }
+    else if (dir == KEY_UP) {
+      dir = KEY_RIGHT;
+    }
+    else if (dir == KEY_DOWN) {
+      dir = KEY_LEFT;
+    }
+
+    getPlayerFutureMove(dir);
+  }
+}
+// function to get Player's future position after passing Gate
+void Render::getPlayerFutureMove(int dir) {
+  int snakeHeadPos_x = player.getSnakeHeadPos(0);
+  int snakeHeadPos_y = player.getSnakeHeadPos(1);
+  if (dir == KEY_UP) { // Up
+    snakeHeadPos_x -= 1;
+  }
+  else if (dir == KEY_DOWN) { // Down
+    snakeHeadPos_x += 1;
+  }
+  else if (dir == KEY_LEFT) { // Left
+    snakeHeadPos_y -= 1;
+  }
+  else if (dir == KEY_RIGHT) { // Right
+    snakeHeadPos_y += 1;
+  }
+  playerFutureMove[0] = snakeHeadPos_x;
+  playerFutureMove[1] = snakeHeadPos_y;
 }
 
 bool Render::keyInput() {

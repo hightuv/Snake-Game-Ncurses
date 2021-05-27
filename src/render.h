@@ -29,11 +29,11 @@ class Render {
   std::pair<int,int> poisonItem;
   std::pair<int,int> gate[2];
   SnakeMove player;
+  int playerFutureMove[2];
   WINDOW *snakeWindow;
   int dir = KEY_RIGHT;
   bool poison_hit = 0;
   bool growth_hit = 0;
-  bool gate_hit = 0;
 public:
   Render(char stage='1');
   void initUI();
@@ -45,6 +45,7 @@ public:
   void spawnGrowthItem();
   void spawnPoisonItem();
   void spawnGate();
+  void getPlayerFutureMove(int dir);
   void changeDirAfterPassingGate();
   bool keyInput();
 };
