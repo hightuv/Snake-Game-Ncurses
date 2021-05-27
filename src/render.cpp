@@ -81,6 +81,7 @@ void Render::initUI() {
     }
     // hit Gate
     if (mapDataArray[head_row][head_col] == GATE) {
+      gate_pass = 1;
       if (gate[0].first == head_row && gate[0].second == head_col) {
         player.snakeHitGate(gate[1].first, gate[1].second);
       }
@@ -88,6 +89,10 @@ void Render::initUI() {
         player.snakeHitGate(gate[0].first, gate[0].second);
       }
       changeDirAfterPassingGate();
+    }
+
+    if (gate_pass == 1) {
+      checkGate();
     }
 
     end = time(NULL);
@@ -101,6 +106,9 @@ void Render::initUI() {
 }
 
 void Render::updateUI(int time) {
+  start_color();
+  init_pair(3, COLOR_RED, COLOR_WHITE);
+  init_pair(4, COLOR_RED, COLOR_BLACK);
   updateMapData(time);
   for(int i=0; i<ROW; i++) {
     for(int j=0; j<COL*2; j++) {
@@ -126,10 +134,10 @@ void Render::updateUI(int time) {
         mvwprintw(snakeWindow, i, j*2, "ㅇ");
       }
       else if (c == GROWTHITEM) {
-        mvwprintw(snakeWindow, i, j*2, "ㄱ");
+        mvwprintw(snakeWindow, i, j*2, "\u2661");
       }
       else if (c == POISONITEM) {
-        mvwprintw(snakeWindow, i, j*2, "ㄴ");
+        mvwprintw(snakeWindow, i, j*2, "\u2715");
       }
       else if(c == GATE) {
         mvwprintw(snakeWindow, i, j*2, "ㅁ");
@@ -149,7 +157,10 @@ void Render::updateMapData(int time) {
   if (time % 9 == 0) {
     spawnPoisonItem();
     spawnGrowthItem();
+  }
+  if (gate_spawn == 0 && gate_pass == 0) {
     spawnGate();
+    gate_spawn = 1;
   }
   // items
   mapDataArray[poisonItem.first][poisonItem.second] = POISONITEM;
@@ -216,6 +227,26 @@ void Render::spawnGate() {
       break;
     }
   }
+}
+
+// check if snake is passing the gate
+void Render::checkGate() {
+  if (gate[0].first == player.getSnakeHeadPos(0) && gate[0].second == player.getSnakeHeadPos(1)) {
+    gate_pass = 1;
+    return;
+  }
+  if (gate[1].first == player.getSnakeHeadPos(0) && gate[1].second == player.getSnakeHeadPos(1)) {
+    gate_pass = 1;
+    return;
+  }
+  for (int i = 0; i < player.getBodyLength(); i++) {
+    if (gate[0] == player.getSnakeBodyPos(i) || gate[1] == player.getSnakeBodyPos(i)) {
+      gate_pass = 1;
+      return;
+    }
+  }
+  gate_pass = 0;
+  gate_spawn = 0;
 }
 
 void Render::changeDirAfterPassingGate() {

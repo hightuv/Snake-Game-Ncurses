@@ -34,6 +34,8 @@ class Render {
   int dir = KEY_RIGHT;
   bool poison_hit = 0;
   bool growth_hit = 0;
+  bool gate_pass = 0;
+  bool gate_spawn = 0;
 public:
   Render(char stage='1');
   void initUI();
@@ -47,5 +49,6 @@ public:
   void spawnGate();
   void getPlayerFutureMove(int dir);
   void changeDirAfterPassingGate();
+  void checkGate();
   bool keyInput();
 };
