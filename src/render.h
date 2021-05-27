@@ -30,7 +30,7 @@ class Render {
   std::pair<int,int> gate[2];
   SnakeMove player;
   WINDOW *snakeWindow;
-  int dir;
+  int dir = KEY_RIGHT;
   bool poison_hit = 0;
   bool growth_hit = 0;
 public:
@@ -44,5 +44,6 @@ public:
   void spawnGrowthItem();
   void spawnPoisonItem();
   void spawnGate();
+  void snakeMeetGate();
   bool keyInput();
 };

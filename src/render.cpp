@@ -47,7 +47,6 @@ void Render::initUI() {
   int duration;
 
   // key input. default to right
-  dir = KEY_RIGHT;
   while(true) {
     int in = dir;
     // key input
@@ -204,6 +203,10 @@ void Render::spawnGate() {
       break;
     }
   }
+}
+
+void Render::snakeMeetGate() {
+  
 }
 
 bool Render::keyInput() {
