@@ -6,4 +6,4 @@ c++, ncurses, ncursesw를 이용한 snakegame.
 
 src 폴더에서 다음을 수행한다.
     make
-    ./snakk
+    ./snake
