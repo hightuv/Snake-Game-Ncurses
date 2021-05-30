@@ -38,6 +38,7 @@ class Render {
   int gateCount = 0;
   bool poison_hit = 0;
   bool growth_hit = 0;
+  int passedBody = 0;
   bool gate_pass = 0;
   bool gate_spawn = 0;
 public:

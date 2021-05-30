@@ -248,22 +248,16 @@ void Render::spawnGate() {
 
 // check if snake is passing the gate
 void Render::checkGate() {
-  if (gate[0].first == player.getSnakeHeadPos(0) && gate[0].second == player.getSnakeHeadPos(1)) {
-    gate_pass = 1;
+  if (passedBody == player.getBodyLength()) {
+    passedBody = 0;
+    gate_pass = 0;
     return;
   }
-  if (gate[1].first == player.getSnakeHeadPos(0) && gate[1].second == player.getSnakeHeadPos(1)) {
+  else {
+    passedBody += 1;
+    gate_spawn = 0;
     gate_pass = 1;
-    return;
   }
-  for (int i = 0; i < player.getBodyLength(); i++) {
-    if (gate[0] == player.getSnakeBodyPos(i) || gate[1] == player.getSnakeBodyPos(i)) {
-      gate_pass = 1;
-      return;
-    }
-  }
-  gate_pass = 0;
-  gate_spawn = 0;
 }
 
 void Render::changeDirAfterPassingGate() {
@@ -295,7 +289,7 @@ void Render::changeDirAfterPassingGate() {
     getPlayerFutureMove(direction[index]);
   }
   dir = direction[index];
-  player.changePos(dir);
+  player.SnakeHeadPosOtherGate(dir);
 }
 // function to get Player's future position after passing Gate
 void Render::getPlayerFutureMove(int dir) {
