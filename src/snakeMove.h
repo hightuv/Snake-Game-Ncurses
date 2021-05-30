@@ -42,6 +42,20 @@ public:
       snakeHead[1] += 1;
     }
   }
+  void SnakeHeadPosOtherGate (int dir) {
+    if (dir == KEY_UP) { // Up
+      snakeHead[0] -= 1;
+    }
+    else if (dir == KEY_DOWN) { // Down
+      snakeHead[0] += 1;
+    }
+    else if (dir == KEY_LEFT) { // Left
+      snakeHead[1] -= 1;
+    }
+    else if (dir == KEY_RIGHT) { // Right
+      snakeHead[1] += 1;
+    }
+  }
   int getSnakeHeadPos(int i) {
     return snakeHead[i];
   }
