@@ -44,4 +44,4 @@ snake.cpp - 맨 처음 시작메뉴를 구성한다. 스테이지 선택후 rend
 
 render.cpp - snake game 구현의 핵심 요소들이 존재한다. snakeWindow, scoreWindow 를 rendering 한다.
 
-snakeMove.h - snake의 body와 head의 ㅁㅁㅁㅁㅁ
+snakeMove.h - snake의 
