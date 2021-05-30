@@ -1,4 +1,4 @@
-#ncurses를 이용한 snake game
+# ncurses를 이용한 snake game
 
 c++, ncurses, ncursesw를 이용한 snakegame.
 
