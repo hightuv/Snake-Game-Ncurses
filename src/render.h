@@ -56,4 +56,5 @@ public:
   void changeDirAfterPassingGate();
   void checkGate();
   bool keyInput();
+  void gameOver();
 };

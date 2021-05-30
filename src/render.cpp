@@ -118,7 +118,7 @@ void Render::initUI() {
     updateUI(duration);
     usleep(300000);
   }
-
+  gameOver();
   delwin(snakeWindow);
   delwin(scoreWindow);
 }
@@ -317,6 +317,18 @@ void Render::getPlayerFutureMove(int dir) {
   }
   playerFutureMove[0] = snakeHeadPos_x;
   playerFutureMove[1] = snakeHeadPos_y;
+}
+
+void Render::gameOver() {
+  for (int i = 0; i < ROW; i++) {
+    for (int j = 0; j < COL; j++){
+      mvwprintw(snakeWindow, i, j*2, "  ");
+    }
+  }
+  mvwprintw(snakeWindow, 5, 18, "GAME OVER");
+  mvwprintw(snakeWindow, 7, 12, "Press any key to exit");
+  mvwprintw(snakeWindow, 10, 16, "‧⁺◟( ᵒ̴̶̷̥́ ·̫ ᵒ̴̶̷̣̥̀ )");
+  wrefresh(snakeWindow);
 }
 
 bool Render::keyInput() {
