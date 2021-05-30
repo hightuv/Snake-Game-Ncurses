@@ -108,8 +108,10 @@ void Render::initUI() {
     duration = (int)(end - start);
 
     // game clear
-    if(growthCount==20 || gateCount==20 || duration==120 || player.getBodyLength()==10 || poisonCount==15)
+    if(growthCount==20 || gateCount==20 || duration==120 || player.getBodyLength()==3 || poisonCount==15) {
+      gameClear = true;
       break;
+    }
     // game over
     if(player.getBodyLength()<2)
       break;
@@ -118,7 +120,9 @@ void Render::initUI() {
     updateUI(duration);
     usleep(300000);
   }
-  gameOver();
+
+  if(!gameClear)
+    gameOver();
   delwin(snakeWindow);
   delwin(scoreWindow);
 }
@@ -330,6 +334,10 @@ void Render::gameOver() {
   mvwprintw(snakeWindow, 10, 16, "‧⁺◟( ᵒ̴̶̷̥́ ·̫ ᵒ̴̶̷̣̥̀ )");
   wrefresh(snakeWindow);
   getch();
+}
+
+bool Render::getGameClear() {
+  return gameClear;
 }
 
 bool Render::keyInput() {

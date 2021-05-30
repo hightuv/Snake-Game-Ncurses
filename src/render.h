@@ -41,6 +41,7 @@ class Render {
   int passedBody = 0;
   bool gate_pass = 0;
   bool gate_spawn = 0;
+  bool gameClear = false;
 public:
   Render(char stage='1');
   void initUI();
@@ -57,4 +58,5 @@ public:
   void checkGate();
   bool keyInput();
   void gameOver();
+  bool getGameClear();
 };

@@ -39,9 +39,15 @@ void Snake::initUI() {
     if(stage=='1' || stage=='2' || stage=='3' || stage=='4')
      break;
   }
-
-  Render render(stage);
-
+  
+  while(true) {
+    Render render(stage);
+    if(!render.getGameClear())
+      break;
+    stage = (stage+1) % 53;
+    if(stage==0)
+      stage=49;
+  }
 
   // refresh window
   refresh();
