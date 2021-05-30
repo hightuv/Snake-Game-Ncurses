@@ -46,5 +46,20 @@ render.cpp - snake game 구현의 핵심 요소들이 존재한다. snakeWindow,
 
 snakeMove.h - snake의 head와 body 위치정보를 갖고있다. body의 개수정보를 갖고있다. head와 body의 위치를 조작한다.
 
+-----------------------
+
+## 실행화면
 
 ![스크린샷, 2021-05-31 00-10-33](https://user-images.githubusercontent.com/39542757/120109515-b6c39380-c1a4-11eb-8e47-dacd69713b33.png)
+
+![스크린샷, 2021-05-31 00-13-47](https://user-images.githubusercontent.com/39542757/120109613-19b52a80-c1a5-11eb-9e52-dc87a7ad7cc9.png)
+
+![스크린샷, 2021-05-31 00-14-29](https://user-images.githubusercontent.com/39542757/120109625-2fc2eb00-c1a5-11eb-9702-490751efb6ff.png)
+
+----------------------
+
+## 기여자
+
+- 김용후
+- 박민서
+
