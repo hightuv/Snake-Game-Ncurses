@@ -17,7 +17,7 @@ src 폴더에서 다음을 수행한다.
 2. growth item 을 먹으면 snake body의 길이가 1 증가한다.
 3. poison item 을 먹으면 snake body의 길이가 1 감소한다.
 4. wall 에는 랜덤으로 gate 가 생성된다. 반드시 두개의 gate 만 존재한다.
-5. scoreboard 의 승리조건을 만족하면 다음 stage 로 이동한다. stage4 
+5. scoreboard 의 승리조건을 만족하면 다음 stage 로 이동한다. stage4 를 클리어 하면 stage1 로 이동한다.
 
 
 -------------------
