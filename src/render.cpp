@@ -108,7 +108,7 @@ void Render::initUI() {
     duration = (int)(end - start);
 
     // game clear
-    if(growthCount>=1 && gateCount>=1 && duration==20 && player.getBodyLength()>=3 && poisonCount>=1) {
+    if(growthCount>=7 && gateCount>=5 && duration>=60 && player.getBodyLength()>=8 && poisonCount>=1) {
       gameClear = true;
       gameClearWindow();
       break;
@@ -167,11 +167,25 @@ void Render::updateUI(int time) {
   }
   //scoreWindow
   int tmp = 0;
-  mvwprintw(scoreWindow, 1, 2, "BodyLength : %d / 10", player.getBodyLength());
-  mvwprintw(scoreWindow, 3, 2, "Growth Item : %d / 20", growthCount);
-  mvwprintw(scoreWindow, 5, 2, "Poison Item : %d / 15", poisonCount);
-  mvwprintw(scoreWindow, 7, 2, "Gate Used : %d / 20", gateCount);
-  mvwprintw(scoreWindow, 9, 2, "Time Limit : %d / 120", time);
+  if(player.getBodyLength()>=8)
+    mvwprintw(scoreWindow, 1, 2, "BodyLength : %d / 8  V", player.getBodyLength());
+  else
+    mvwprintw(scoreWindow, 1, 2, "BodyLength : %d / 8", player.getBodyLength());
+  if(growthCount>=7)
+    mvwprintw(scoreWindow, 3, 2, "Growth Item : %d / 7  V", growthCount);
+  else
+    mvwprintw(scoreWindow, 3, 2, "Growth Item : %d / 7", growthCount);
+  if(poisonCount>=1)
+    mvwprintw(scoreWindow, 5, 2, "Poison Item : %d / 1  V", poisonCount);
+  else
+    mvwprintw(scoreWindow, 5, 2, "Poison Item : %d / 1", poisonCount);
+  if(gateCount>=5)
+    mvwprintw(scoreWindow, 7, 2, "Gate Used : %d / 5  V", gateCount);
+  else
+    mvwprintw(scoreWindow, 7, 2, "Gate Used : %d / 5", gateCount);
+  if(time>=60)
+    mvwprintw(scoreWindow, 9, 2, "Time Limit : %d / 60  V", time);
+  mvwprintw(scoreWindow, 9, 2, "Time Limit : %d / 60", time);
 
   wrefresh(snakeWindow);
   wrefresh(scoreWindow);
