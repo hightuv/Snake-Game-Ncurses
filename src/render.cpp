@@ -267,6 +267,7 @@ void Render::changeDirAfterPassingGate() {
 
     getPlayerFutureMove(dir);
   }
+  player.changePos(dir);
 }
 // function to get Player's future position after passing Gate
 void Render::getPlayerFutureMove(int dir) {
