@@ -40,8 +40,15 @@ void Render::initUI() {
   start_color();
   init_pair(2, COLOR_WHITE, COLOR_BLACK);
   wbkgd(snakeWindow, COLOR_PAIR(2));
+
+  scoreWindow = newwin(12, 30, 5, 65);
+  init_pair(3, COLOR_BLUE, COLOR_BLACK);
+  wbkgd(scoreWindow, COLOR_PAIR(3));
+  wborder(scoreWindow, '#', '#', '#', '#', '#', '#', '#', '#');
+
   updateUI();
   wrefresh(snakeWindow);
+  wrefresh(scoreWindow);
   time_t start = time(NULL);
   time_t end;
   int duration;
@@ -72,16 +79,19 @@ void Render::initUI() {
     if (mapDataArray[head_row][head_col] == GROWTHITEM) {
       player.snakeHitGrowthItem();
       growth_hit = 1;
+      growthCount++;
     }
     if (mapDataArray[head_row][head_col] == POISONITEM) {
       // body size less than 2
       if(!player.snakeHitPoisonItem())
         break;
       poison_hit = 1;
+      poisonCount++;
     }
     // hit Gate
     if (mapDataArray[head_row][head_col] == GATE) {
       gate_pass = 1;
+      gateCount++;
       if (gate[0].first == head_row && gate[0].second == head_col) {
         player.snakeHitGate(gate[1].first, gate[1].second);
       }
@@ -106,9 +116,7 @@ void Render::initUI() {
 }
 
 void Render::updateUI(int time) {
-  start_color();
-  init_pair(3, COLOR_RED, COLOR_WHITE);
-  init_pair(4, COLOR_RED, COLOR_BLACK);
+  // gameWindow
   updateMapData(time);
   for(int i=0; i<ROW; i++) {
     for(int j=0; j<COL*2; j++) {
@@ -144,7 +152,16 @@ void Render::updateUI(int time) {
       }
     }
   }
+  //scoreWindow
+  int tmp = 0;
+  mvwprintw(scoreWindow, 1, 2, "BodyLength : %d / 10", player.getBodyLength());
+  mvwprintw(scoreWindow, 3, 2, "Growth Item : %d / 20", growthCount);
+  mvwprintw(scoreWindow, 5, 2, "Position Item : %d / 20", poisonCount);
+  mvwprintw(scoreWindow, 7, 2, "Gate Used : %d / 20", gateCount);
+  mvwprintw(scoreWindow, 9, 2, "Time Limit : %d / 120", time);
+
   wrefresh(snakeWindow);
+  wrefresh(scoreWindow);
 }
 
 void Render::updateMapData(int time) {

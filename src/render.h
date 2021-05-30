@@ -31,7 +31,11 @@ class Render {
   SnakeMove player;
   int playerFutureMove[2];
   WINDOW *snakeWindow;
+  WINDOW *scoreWindow;
   int dir = KEY_RIGHT;
+  int growthCount = 0;
+  int poisonCount = 0;
+  int gateCount = 0;
   bool poison_hit = 0;
   bool growth_hit = 0;
   bool gate_pass = 0;
