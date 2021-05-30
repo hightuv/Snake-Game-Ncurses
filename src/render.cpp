@@ -110,6 +110,7 @@ void Render::initUI() {
     // game clear
     if(growthCount>=7 && gateCount>=5 && duration>=60 && player.getBodyLength()>=8 && poisonCount>=1) {
       gameClear = true;
+      updateUI(duration);
       gameClearWindow();
       break;
     }
