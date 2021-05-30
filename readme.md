@@ -14,8 +14,8 @@ src 폴더에서 다음을 수행한다.
 ## 전체 구조
 
 > map
-> > map1.txt
-> > map2.txt
+> > map1.txt\n
+> > map2.txt\n
 > > map3.txt
 > > map4.txt
 
