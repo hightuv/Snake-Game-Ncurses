@@ -260,19 +260,19 @@ void Render::changeDirAfterPassingGate() {
     }
   }
   if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
-    index -= 1;
-    if (index < 0) index +=4;
-    else if (index > 3) index -= 4;
-    getPlayerFutureMove(direction[index]);
-  }
-  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
-    index += 2;
-    if (index < 0) index +=4;
-    else if (index > 3) index -= 4;
-    getPlayerFutureMove(direction[index]);
-  }
-  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
     index += 1;
+    if (index < 0) index +=4;
+    else if (index > 3) index -= 4;
+    getPlayerFutureMove(direction[index]);
+  }
+  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+    index -= 2;
+    if (index < 0) index +=4;
+    else if (index > 3) index -= 4;
+    getPlayerFutureMove(direction[index]);
+  }
+  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+    index -= 1;
     if (index < 0) index +=4;
     else if (index > 3) index -= 4;
     getPlayerFutureMove(direction[index]);
