@@ -18,6 +18,7 @@ src 폴더에서 다음을 수행한다.
 > > map2.txt
 > > map3.txt
 > > map4.txt
+
 > src
 > > Makefile
 > > main.cpp
