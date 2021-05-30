@@ -108,7 +108,7 @@ void Render::initUI() {
     duration = (int)(end - start);
 
     // game clear
-    if(growthCount==20 || gateCount==20 || duration==120 || player.getBodyLength()==10 || poisonCount==15) {
+    if(growthCount>=1 && gateCount>=1 && duration==20 && player.getBodyLength()>=3 && poisonCount>=1) {
       gameClear = true;
       gameClearWindow();
       break;
@@ -249,6 +249,10 @@ void Render::spawnGate() {
     int col1 = rand() % 23;
     int row2 = rand() % 23;
     int col2 = rand() % 23;
+    if (row1 == row2 && col1 == col2) {
+      row2 = rand() % 23;
+      col2 = rand() % 23;
+    }
     if(mapDataArray[row1][col1] == WALL && mapDataArray[row2][col2] == WALL) {
       gate[0].first = row1;
       gate[0].second = col1;
