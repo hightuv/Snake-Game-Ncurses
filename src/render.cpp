@@ -329,6 +329,7 @@ void Render::gameOver() {
   mvwprintw(snakeWindow, 7, 12, "Press any key to exit");
   mvwprintw(snakeWindow, 10, 16, "‧⁺◟( ᵒ̴̶̷̥́ ·̫ ᵒ̴̶̷̣̥̀ )");
   wrefresh(snakeWindow);
+  getch();
 }
 
 bool Render::keyInput() {

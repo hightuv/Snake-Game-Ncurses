@@ -46,6 +46,5 @@ void Snake::initUI() {
   // refresh window
   refresh();
   // wait for input
-  getch();
   endwin();
 }
