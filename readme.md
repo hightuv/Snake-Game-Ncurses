@@ -62,13 +62,18 @@ snakeMove.h - snake의 head와 body 위치정보를 갖고있다. body의 개수
 
 ## 실행화면
 
+
 ![스크린샷, 2021-05-31 00-10-33](https://user-images.githubusercontent.com/39542757/120109515-b6c39380-c1a4-11eb-8e47-dacd69713b33.png)
+
 
 ![스크린샷, 2021-05-31 00-13-47](https://user-images.githubusercontent.com/39542757/120109613-19b52a80-c1a5-11eb-9e52-dc87a7ad7cc9.png)
 
+
 ![스크린샷, 2021-05-31 00-14-29](https://user-images.githubusercontent.com/39542757/120109625-2fc2eb00-c1a5-11eb-9702-490751efb6ff.png)
 
-![스크린샷, 2021-05-31 00-22-49](https://user-images.githubusercontent.com/39542757/120109892-61888180-c1a6-11eb-8a55-b777b0a31a7d.png)
+
+![스크린샷, 2021-05-31 00-23-53](https://user-images.githubusercontent.com/39542757/120109937-87ae2180-c1a6-11eb-96ce-81f5dcc6bab1.png)
+
 
 ----------------------
 
