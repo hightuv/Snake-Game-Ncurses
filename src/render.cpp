@@ -283,22 +283,34 @@ void Render::changeDirAfterPassingGate() {
       break;
     }
   }
-  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] != EMPTY) {
     index += 1;
-    if (index < 0) index +=4;
-    else if (index > 3) index -= 4;
+    if (index < 0) {
+      index +=4;
+    }
+    else if (index > 3) {
+      index -= 4;
+    }
     getPlayerFutureMove(direction[index]);
   }
-  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] != EMPTY) {
     index -= 2;
-    if (index < 0) index +=4;
-    else if (index > 3) index -= 4;
+    if (index < 0) {
+      index +=4;
+    }
+    else if (index > 3) {
+      index -= 4;
+    }
     getPlayerFutureMove(direction[index]);
   }
-  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] != EMPTY) {
     index -= 1;
-    if (index < 0) index +=4;
-    else if (index > 3) index -= 4;
+    if (index < 0) {
+      index +=4;
+    }
+    else if (index > 3) {
+      index -= 4;
+    }
     getPlayerFutureMove(direction[index]);
   }
   dir = direction[index];
