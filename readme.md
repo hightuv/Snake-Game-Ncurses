@@ -13,8 +13,8 @@ src 폴더에서 다음을 수행한다.
 
 ## 전체 구조
 
-> map
-> > map1.txt
+* map
+* - map1.txt
 
 > > map2.txt
 > > map3.txt
