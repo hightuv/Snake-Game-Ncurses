@@ -42,7 +42,7 @@ void Render::initUI() {
   wbkgd(snakeWindow, COLOR_PAIR(2));
 
   scoreWindow = newwin(12, 30, 5, 65);
-  init_pair(3, COLOR_BLUE, COLOR_BLACK);
+  init_pair(3, COLOR_RED, COLOR_BLACK);
   wbkgd(scoreWindow, COLOR_PAIR(3));
   wborder(scoreWindow, '#', '#', '#', '#', '#', '#', '#', '#');
 
@@ -62,7 +62,7 @@ void Render::initUI() {
       if(in==dir)
         continue;
     }
-    // opposit side input
+    // game over
     if((dir==KEY_RIGHT&&in==KEY_LEFT) || (dir==KEY_LEFT&&in==KEY_RIGHT) || (dir==KEY_UP&&in==KEY_DOWN) || (dir==KEY_DOWN&&in==KEY_UP))
       break;
     // direction set
@@ -83,8 +83,7 @@ void Render::initUI() {
     }
     if (mapDataArray[head_row][head_col] == POISONITEM) {
       // body size less than 2
-      if(!player.snakeHitPoisonItem())
-        break;
+      player.snakeHitPoisonItem();
       poison_hit = 1;
       poisonCount++;
     }
@@ -107,12 +106,21 @@ void Render::initUI() {
 
     end = time(NULL);
     duration = (int)(end - start);
+
+    // game clear
+    if(growthCount==20 || gateCount==20 || duration==120 || player.getBodyLength()==10 || poisonCount==15)
+      break;
+    // game over
+    if(player.getBodyLength()<2)
+      break;
+
+
     updateUI(duration);
     usleep(300000);
   }
 
-  //delwin(snakeWindow);
-  //endwin();
+  delwin(snakeWindow);
+  delwin(scoreWindow);
 }
 
 void Render::updateUI(int time) {
@@ -130,7 +138,7 @@ void Render::updateUI(int time) {
         mvwprintw(snakeWindow, i, j*2, "\u25A1");
       }
       else if (c == IMMUNEWALL) {
-        mvwprintw(snakeWindow, i, j*2, "\u0020");
+        mvwprintw(snakeWindow, i, j*2, "\u2B1B");
       }
       else if (c == EMPTY) {
         mvwprintw(snakeWindow, i, j*2, "\u0020");
@@ -142,10 +150,10 @@ void Render::updateUI(int time) {
         mvwprintw(snakeWindow, i, j*2, "ㅇ");
       }
       else if (c == GROWTHITEM) {
-        mvwprintw(snakeWindow, i, j*2, "\u2661");
+        mvwprintw(snakeWindow, i, j*2, "약");
       }
       else if (c == POISONITEM) {
-        mvwprintw(snakeWindow, i, j*2, "\u2715");
+        mvwprintw(snakeWindow, i, j*2, "독");
       }
       else if(c == GATE) {
         mvwprintw(snakeWindow, i, j*2, "ㅁ");
@@ -156,7 +164,7 @@ void Render::updateUI(int time) {
   int tmp = 0;
   mvwprintw(scoreWindow, 1, 2, "BodyLength : %d / 10", player.getBodyLength());
   mvwprintw(scoreWindow, 3, 2, "Growth Item : %d / 20", growthCount);
-  mvwprintw(scoreWindow, 5, 2, "Position Item : %d / 20", poisonCount);
+  mvwprintw(scoreWindow, 5, 2, "Poison Item : %d / 15", poisonCount);
   mvwprintw(scoreWindow, 7, 2, "Gate Used : %d / 20", gateCount);
   mvwprintw(scoreWindow, 9, 2, "Time Limit : %d / 120", time);
 

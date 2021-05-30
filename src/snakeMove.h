@@ -65,11 +65,8 @@ public:
   void snakeHitGrowthItem() {
     snakeBody.push_back(tail);
   }
-  bool snakeHitPoisonItem() {
+  void snakeHitPoisonItem() {
     snakeBody.pop_back();
-    if(snakeBody.size()<2)
-      return false;
-    return true;
   }
   void snakeHitGate(int otherGate_x, int otherGate_y) {
     snakeHead[0] = otherGate_x; snakeHead[1] = otherGate_y;
