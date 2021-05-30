@@ -34,7 +34,7 @@ src 폴더에서 다음을 수행한다.
 
 map directory -  맵 정보 txt file.
 
-src - snake 구현 소스코드
+src directory - snake 구현 소스코드
 
 Makefile - make
 
