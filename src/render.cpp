@@ -108,7 +108,7 @@ void Render::initUI() {
     duration = (int)(end - start);
 
     // game clear
-    if(growthCount==20 || gateCount==20 || duration==120 || player.getBodyLength()==3 || poisonCount==15) {
+    if(growthCount==20 || gateCount==20 || duration==120 || player.getBodyLength()==10 || poisonCount==15) {
       gameClear = true;
       break;
     }
