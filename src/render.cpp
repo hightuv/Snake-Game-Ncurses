@@ -251,22 +251,33 @@ void Render::checkGate() {
 
 void Render::changeDirAfterPassingGate() {
   getPlayerFutureMove(dir);
-  while (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
-    if (dir == KEY_LEFT) {
-      dir = KEY_UP;
+  int direction[4] = {KEY_LEFT, KEY_UP, KEY_RIGHT, KEY_DOWN};
+  int index;
+  for (int i = 0; i < 4; i++) {
+    if (direction[i] == dir) {
+      index = i;
+      break;
     }
-    else if (dir == KEY_RIGHT) {
-      dir = KEY_DOWN;
-    }
-    else if (dir == KEY_UP) {
-      dir = KEY_RIGHT;
-    }
-    else if (dir == KEY_DOWN) {
-      dir = KEY_LEFT;
-    }
-
-    getPlayerFutureMove(dir);
   }
+  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+    index -= 1;
+    if (index < 0) index +=4;
+    else if (index > 3) index -= 4;
+    getPlayerFutureMove(direction[index]);
+  }
+  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+    index += 2;
+    if (index < 0) index +=4;
+    else if (index > 3) index -= 4;
+    getPlayerFutureMove(direction[index]);
+  }
+  if (mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == WALL || mapDataArray[playerFutureMove[0]][playerFutureMove[1]] == IMMUNEWALL) {
+    index += 1;
+    if (index < 0) index +=4;
+    else if (index > 3) index -= 4;
+    getPlayerFutureMove(direction[index]);
+  }
+  dir = direction[index];
   player.changePos(dir);
 }
 // function to get Player's future position after passing Gate
