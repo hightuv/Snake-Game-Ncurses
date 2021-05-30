@@ -110,6 +110,7 @@ void Render::initUI() {
     // game clear
     if(growthCount==20 || gateCount==20 || duration==120 || player.getBodyLength()==10 || poisonCount==15) {
       gameClear = true;
+      gameClearWindow();
       break;
     }
     // game over
@@ -332,6 +333,19 @@ void Render::gameOver() {
   mvwprintw(snakeWindow, 5, 18, "GAME OVER");
   mvwprintw(snakeWindow, 7, 12, "Press any key to exit");
   mvwprintw(snakeWindow, 10, 16, "‧⁺◟( ᵒ̴̶̷̥́ ·̫ ᵒ̴̶̷̣̥̀ )");
+  wrefresh(snakeWindow);
+  getch();
+}
+
+void Render::gameClearWindow() {
+  for (int i = 0; i < ROW; i++) {
+    for (int j = 0; j < COL; j++){
+      mvwprintw(snakeWindow, i, j*2, "  ");
+    }
+  }
+  mvwprintw(snakeWindow, 5, 18, "GAME CLEAR");
+  mvwprintw(snakeWindow, 7, 8, "Press any key to play next stage");
+  mvwprintw(snakeWindow, 10, 18, "*(*´∀｀*)☆");
   wrefresh(snakeWindow);
   getch();
 }

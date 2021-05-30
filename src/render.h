@@ -58,5 +58,6 @@ public:
   void checkGate();
   bool keyInput();
   void gameOver();
+  void gameClearWindow();
   bool getGameClear();
 };
