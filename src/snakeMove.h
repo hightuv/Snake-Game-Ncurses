@@ -1,6 +1,5 @@
 #include <deque>
 #include <ncurses.h>
-#include <algorithm>
 
 class SnakeMove {
   int snakeHead[2];
