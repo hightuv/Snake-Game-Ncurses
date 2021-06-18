@@ -3,12 +3,8 @@
 #include <fstream>
 #include <iostream>
 #include "snakeMove.h"
-// pair
-#include <utility>
 // random
 #include <cstdlib>
-// time
-#include <ctime>
 // time sleep
 #include <unistd.h>
 #define EMPTY '0'
